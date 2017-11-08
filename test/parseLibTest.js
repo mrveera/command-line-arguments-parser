@@ -2,7 +2,7 @@ const assert = require('assert');
 
 
 
-const parserLib = require('../src/ParserLib');
+const parserLib = require('../src/parserLib');
 let test={};
 exports.test=test;
 

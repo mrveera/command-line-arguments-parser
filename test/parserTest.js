@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Parser = require('../src/Parser');
+const Parser = require('../src/parser');
 let test={};
 exports.test=test;
 
