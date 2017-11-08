@@ -1,7 +1,7 @@
 const parserTest = require('./parserTest').runTests;
 const parseLibTest = require('./parseLibTest').runTests;
 
-let runTests = function () {
+ runTests = function () {
   parserTest();
   parseLibTest();
 }
