@@ -1,0 +1,42 @@
+Parser
+=================
+
+features
+-------------------
+. create new parser
+. set default option(n)
+. set legal options(-n,-c)
+. set legal verbose(--help,--man)
+. parse the give arguments(['-n','10','files'])
+. maximum options
+. invalid arguments
+
+
+
+--------------------
+
+TODO
+
+=============
+
+* we are not testing constructor
+-- just going to define data structure of that object
+* it's behaviour to set default option , addLegal option, addLegal verbose.
+    - setDefaultOption will take option and set to defaultOption in the parsedArguments
+    - addLegalOption should take option and add into the legalOptions ( return false for empty option)
+    -- addLegalVerbose should take verbose and add into the legalVerboses ( return false for empty verbose )
+    - parse will take array of options and return in parsedArguments structure
+
+==== parse function ======
+  - loop through the arguments
+    - check element is an option ?
+      -is that element contains value itself ?
+        -separate number and option and put it in parsed arguments
+        -if it's not having option, defaultOption as key
+      - (if you answer no to above question)
+        this element is key next element is value increment the index
+
+    - check element is verbose
+        push into verbose
+    - if you say no for both two question
+      push remaining arguments from that index into arguments
