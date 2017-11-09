@@ -12,7 +12,7 @@ I am providing different methods to specify rules
 I am implementing head (shell command) functionality using node js i found that it's difficult write individual parser for each command
 So by installing this module you can build any command easily
 even if you are building your own command.
-
+[My Mentor ](https://github.com/craftybones) key-val parser motivated me a lot.
 ## Installation
 
 `npm install command-line-arguments-parser`
