@@ -1,6 +1,6 @@
 const assert = require('assert');
 const Parser = require('../src/parser');
-let test={};
+const test={};
 exports.test=test;
 
 //========= setDefaultOption ============
