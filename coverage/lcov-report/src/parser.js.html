@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/parser.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> parser.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.8% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>88/98</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.42% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>24/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>21/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.69% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>87/97</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">50×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const ErrorEmitter = require('./errorHandler');
+const parserLib = require('./parserLib');
+let Parser = function () {
+  this.legalOptions=[];
+  this.legalVerboses=[];
+  this.replaces={};
+  this.parsedArguments ={
+    arguments:[],
+    verboses:[],
+    optionSetBy:'default',
+    flags:{},
+  };
+  this.combinedFlags=false;
+  this.maximum=1;
+}
+let methods={};
+&nbsp;
+methods.addReplacer = function (key,value) {
+  this.replaces[key]=value;
+}
+methods.getReplacer = function (key) {
+  let replacer = (this.replaces[key] != undefined)?this.replaces[key]:key;
+  return replacer;
+}
+methods.setDefaultOption = function (defaultOption) {
+  this.getParsedArguments().defaultOption=defaultOption;
+};
+&nbsp;
+methods.addLegalOption = function (option,validationCallback) {
+  this.legalOptions.push(option.substring(1));
+  this[option.substring(1)]=validationCallback;
+};
+methods.addLegalVerbose = function (verbose) {
+  this.legalVerboses.push(verbose.substring(2));
+};
+&nbsp;
+methods.isLegalOption = function (option) {
+  return parserLib.isOption(option)&amp;&amp;this.legalOptions.includes(option.substring(1));
+}
+&nbsp;
+methods.isLegalVerbose = function (verbose) {
+  return parserLib.isVerbose(verbose)&amp;&amp;this.legalVerboses
+  .includes(verbose.substring(2));
+}
+&nbsp;
+methods.validateOptionAndValue = function (option,value) {
+  let err = {};
+   <span class="missing-if-branch" title="if path not taken" >I</span>if(!this.isLegalOption(option)){
+<span class="cstat-no" title="statement not covered" >     err.name='option';</span>
+<span class="cstat-no" title="statement not covered" >     err.reason='invalid option --'+option;</span>
+<span class="cstat-no" title="statement not covered" >     ErrorEmitter.emit('error',err);</span>
+   }else <span class="missing-if-branch" title="if path not taken" >I</span>if(!this[option.substring(1)](value)){
+<span class="cstat-no" title="statement not covered" >     err.name='value';</span>
+<span class="cstat-no" title="statement not covered" >     err.reason='invalid value '+ value+'for --'+option;</span>
+<span class="cstat-no" title="statement not covered" >     ErrorEmitter.emit('error',err);</span>
+   }
+   return true;
+}
+&nbsp;
+methods.validateVerbose = function (verbose) {
+  let err ={};
+  <span class="missing-if-branch" title="if path not taken" >I</span>if(!this.isLegalVerbose(verbose)){
+<span class="cstat-no" title="statement not covered" >    err.name='verbose';</span>
+<span class="cstat-no" title="statement not covered" >    err.reason='illegal verbose --'+verboses;</span>
+<span class="cstat-no" title="statement not covered" >    ErrorEmitter.emit('error',err);</span>
+  }
+}
+&nbsp;
+methods.setOptionAndValue=function (option,value) {
+  this.validateOptionAndValue(option,value)
+  this.getParsedArguments().flags[option.substring(1)]=value;
+  this.isMaximumOptionsReached();
+}
+&nbsp;
+methods.isMaximumOptionsReached = function () {
+  let optionsSet = Object.keys(this.getParsedArguments().flags);
+  <span class="missing-if-branch" title="if path not taken" >I</span>if(optionsSet.length&gt;this.maximum)
+<span class="cstat-no" title="statement not covered" >    ErrorEmitter.emit('error',{name:'maximum options ',reason:'maximum options reached  '+ optionsSet});</span>
+}
+methods.parseArguments = function (option,remainingArray) {
+  if(parserLib.isOption(option)){
+    this.parseOptions(option,remainingArray);
+  }else{
+    this.setOptionalArguments(option,remainingArray);
+  }
+  return true;
+}
+&nbsp;
+methods.parseOptions = function (option,remainingArray) {
+  let separatedObj={};
+  if(parserLib.doesOptionContainValue(option)){
+    separatedObj=parserLib.getNumberAndTextFromString(option);
+    let optionToSet = separatedObj.text &amp;&amp; separatedObj.text.join('') || (<span class="branch-2 cbranch-no" title="branch not covered" >this.getParsedArguments().optionSetBy='program'&amp;&amp; this.getParsedArguments().defaultOption)</span>;
+    this.setOptionAndValue('-'+optionToSet,separatedObj.number);
+&nbsp;
+  }else if (parserLib.isVerbose(option)) {
+    this.setLegalVerbose(option);
+&nbsp;
+  }else if (parserLib.doesItContainMultipleOptions(option)) {
+    let multiOptionArray = parserLib.getTextPartFromString(option);
+&nbsp;
+    if(this.combinedFlags){
+      multiOptionArray = multiOptionArray.map(function (ele) {
+        return '-'+ele;
+      });
+    for(let index=0;index&lt;multiOptionArray.length;){
+     let element = multiOptionArray[index];
+     this.parseOptions(this.getReplacer(multiOptionArray.shift()),
+     remainingArray);
+     }
+   }else{
+     this.setOptionAndValue('-'+multiOptionArray.join(''),remainingArray.shift());
+   }
+  }else{
+    if(option == '-'+this.getParsedArguments().defaultOption) this.getParsedArguments().optionSetBy='default';
+    this.setOptionAndValue(option,remainingArray.shift());
+  }
+}
+&nbsp;
+methods.setLegalVerbose = function (verbose) {
+  this.validateVerbose(verbose);
+  this.getParsedArguments().verboses.push(verbose);
+  return true;
+}
+&nbsp;
+methods.setOptionalArguments = function (option,remainingArray) {
+  remainingArray.unshift(option);
+  this.getParsedArguments().arguments=remainingArray.slice();
+  remainingArray.length=0;
+}
+&nbsp;
+methods.parse = function (argumentsArray) {
+  let copyOfArguments = argumentsArray.slice();
+  while (copyOfArguments.length&gt;0) {
+    this.parseArguments(this.getReplacer(copyOfArguments.shift())
+    ,copyOfArguments);
+  }
+  return this.getParsedArguments();
+}
+&nbsp;
+methods.enableCombinedFlags = function () {
+  this.combinedFlags=true;
+}
+&nbsp;
+methods.setMaximumOptions = function (numberOfOptions) {
+  this.maximum=numberOfOptions;
+  return true;
+};
+&nbsp;
+methods.getParsedArguments=function () {
+  return this.parsedArguments;
+}
+&nbsp;
+Parser.prototype=methods;
+module.exports=Parser;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 09 2017 22:53:03 GMT+0530 (IST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
