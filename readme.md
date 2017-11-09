@@ -3,6 +3,8 @@
 
 # command-line-arguments-parser
 
+[![Join the chat at https://gitter.im/command-line-arguments-parser/Lobby](https://badges.gitter.im/command-line-arguments-parser/Lobby.svg)](https://gitter.im/command-line-arguments-parser/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a command line arguments parser written in Javascript that helps parse command line arguments and it will return object with boolean flags ,value flags, arguments, optionSetBy and default option.
 You should define rules to parse.
 I am providing different methods to specify rules
