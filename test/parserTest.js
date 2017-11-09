@@ -188,6 +188,92 @@ test ['parse should seperates all the input in options,arguments and verbose'] =
   assert.deepEqual(actual,expected);
 };
 
+
+test ['parse should seperates multiple options  in options,arguments and verbose'] = function(){
+  let demoArgs6 = ['-nc' ,'12','12' , 'toDo.txt','sample.js','--help'];
+  let parser = new Parser();
+  let isItNumber = function (value) {
+    return (+value>0);
+  };
+  parser.setDefaultOption('n');
+  parser.addLegalOption('-n',isItNumber);
+  parser.addLegalOption('-c',isItNumber);
+  parser.setMaximumOptions(2);
+  parser.enableCombinedFlags();
+  parser.addLegalVerbose('--help');
+  let expected ={
+    arguments:['toDo.txt','sample.js','--help'],
+    verboses:[],
+    optionSetBy:'default',
+    flags:{n:'12',c:'12'},
+    defaultOption:'n'
+  };
+  let actual = parser.parse(demoArgs6);
+  assert.deepEqual(actual,expected);
+};
+
+test['parse seperates verbose , files from arguments given'] = function(){
+  let demoArgs3 = ['--help',"toDo.txt"];
+  let parser = new Parser();
+  let isItNumber = function (value) {
+    return (+value>0);
+  };
+  parser.setDefaultOption('n');
+  parser.addLegalOption('-n',isItNumber);
+  parser.addLegalOption('-c',isItNumber);
+  parser.setMaximumOptions(2);
+
+  parser.addLegalVerbose('--help');
+  let expected ={
+    arguments:['toDo.txt'],
+    verboses:['--help'],
+    optionSetBy:'default',
+    flags:{},
+    defaultOption:'n'
+  };
+  let actual = parser.parse(demoArgs3)
+  assert.deepEqual(actual,expected);
+};
+
+
+test['parse seperates multi letter option , files from arguments given'] = function(){
+  let demoArgs3 = ['-nc','12',"toDo.txt"];
+  let parser = new Parser();
+  let isItNumber = function (value) {
+    return (+value>0);
+  };
+  parser.setDefaultOption('n');
+  parser.addLegalOption('-nc',isItNumber);
+  parser.setMaximumOptions(2);
+
+  parser.addLegalVerbose('--help');
+  let expected ={
+    arguments:['toDo.txt'],
+    verboses:[],
+    optionSetBy:'default',
+    flags:{nc:12},
+    defaultOption:'n'
+  };
+  let actual = parser.parse(demoArgs3)
+  assert.deepEqual(actual,expected);
+};
+
+
+
+// ====== addReplacer =========
+test['addReplacer should set given value to given key'] = function () {
+  let parser = new Parser();
+  parser.addReplacer('--','-n10');
+  assert.equal(parser.replaces['--'],'-n10');
+}
+
+//===== getReplacer ========
+test['getReplacer should return  value to given key'] = function () {
+  let parser = new Parser();
+  parser.addReplacer('--','-n10');
+  assert.equal(parser.getReplacer('--'),'-n10');
+}
+
 exports.runTests = function () {
   let testCases = Object.keys(test);
   for(let index=0;index<testCases.length;index++){

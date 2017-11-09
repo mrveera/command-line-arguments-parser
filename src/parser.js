@@ -57,6 +57,15 @@ methods.validateOptionAndValue = function (option,value) {
    return true;
 }
 
+methods.validateVerbose = function (verbose) {
+  let err ={};
+  if(!this.isLegalVerbose(verbose)){
+    err.name='verbose';
+    err.reason='illegal verbose --'+verbose;
+    ErrorEmitter.emit('error',err);
+  }
+}
+
 methods.setOptionAndValue=function (option,value) {
   this.validateOptionAndValue(option,value)
   this.getParsedArguments().flags[option.substring(1)]=value;
@@ -84,7 +93,7 @@ methods.parseOptions = function (option,remainingArray) {
     let optionToSet = separatedObj.text && separatedObj.text.join('') || (this.getParsedArguments().optionSetBy='program'&& this.getParsedArguments().defaultOption);
     this.setOptionAndValue('-'+optionToSet,separatedObj.number);
 
-  }else if (this.isLegalVerbose(option)) {
+  }else if (parserLib.isVerbose(option)) {
     this.setLegalVerbose(option);
 
   }else if (parserLib.doesItContainMultipleOptions(option)) {
@@ -109,6 +118,7 @@ methods.parseOptions = function (option,remainingArray) {
 }
 
 methods.setLegalVerbose = function (verbose) {
+  this.validateVerbose(verbose);
   this.getParsedArguments().verboses.push(verbose);
   return true;
 }

@@ -9,7 +9,7 @@ let headArguments = function () {
   headParser.addReplacer('--','-n10');
   headParser.addLegalVerbose('--help');
   headParser.enableCombinedFlags();
-  headParser.setMaximumOptions(2);
+  headParser.setMaximumOptions(1);
   console.log(headParser.parse(args));
 }
 
