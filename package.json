@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node test/runAllTest.js"
+    "test": "node test/runAllTest.js",
+    "start":"node index.js",
+    "build":"node test/runAllTest.js"
   },
   "repository": {
     "type":"git",
