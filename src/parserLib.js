@@ -1,36 +1,36 @@
-let isOption = function (option) {
+var isOption = function (option) {
   return option.substring(0,1)=='-';
 }
 
-let isVerbose = function (option) {
+var isVerbose = function (option) {
   return option.substring(0,2)=='--';
 }
 
-let getNumberPartFromString = function (inputString) {
-  let numberArray = inputString.match(/[0-9]+/g);
-  let result = (Array.isArray(numberArray)&&numberArray.length>0)?numberArray[numberArray.length-1]:false;
+var getNumberPartFromString = function (inputString) {
+  var numberArray = inputString.match(/[0-9]+/g);
+  var result = (Array.isArray(numberArray)&&numberArray.length>0)?numberArray[numberArray.length-1]:false;
   return result;
 }
 
-let getTextPartFromString = function (inputString) {
-  let textArray = inputString.match(/([a-z])/ig);
-  let result = (Array.isArray(textArray))?textArray:false;
+var getTextPartFromString = function (inputString) {
+  var textArray = inputString.match(/([a-z])/ig);
+  var result = (Array.isArray(textArray))?textArray:false;
   return result;
 }
 
-let getNumberAndTextFromString = function (inputString) {
-  let resultObj ={};
+var getNumberAndTextFromString = function (inputString) {
+  var resultObj ={};
   resultObj.number = getNumberPartFromString(inputString);
   resultObj.text= getTextPartFromString(inputString);
   return resultObj;
 }
 
-let doesOptionContainValue =  function (option) {
+var doesOptionContainValue =  function (option) {
   return getNumberPartFromString(option)&&true;
 }
 
-let doesItContainMultipleOptions = function (option) {
-  let textPart =getTextPartFromString(option) ||false;
+var doesItContainMultipleOptions = function (option) {
+  var textPart =getTextPartFromString(option) ||false;
 
   return textPart && textPart.length>1;
 }

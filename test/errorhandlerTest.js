@@ -1,5 +1,5 @@
 const assert = require('assert');
 
 const errorHandler = require('../src/errorHandler');
-let test={};
+var test={};
 exports.test=test;
