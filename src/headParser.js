@@ -1,8 +1,8 @@
 const Parser = require('./parser');
 
-var headArguments = function () {
-  var args = process.argv.slice(2);
-  var headParser = new Parser();
+let headArguments = function () {
+  let args = process.argv.slice(2);
+  let headParser = new Parser();
   headParser.setDefaultOption('n');
   headParser.addLegalOption('-n',isItNumber);
   headParser.addLegalOption('-c',isItNumber);
@@ -13,7 +13,7 @@ var headArguments = function () {
   console.log(headParser.parse(args));
 }
 
-var isItNumber = function (value) {
+let isItNumber = function (value) {
   return (+value>0);
 };
 headArguments();

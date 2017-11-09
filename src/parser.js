@@ -1,6 +1,6 @@
 const ErrorEmitter = require('./errorHandler');
 const parserLib = require('./parserLib');
-var Parser = function () {
+let Parser = function () {
   this.legalOptions=[];
   this.legalVerboses=[];
   this.replaces={};
@@ -13,13 +13,13 @@ var Parser = function () {
   this.combinedFlags=false;
   this.maximum=1;
 }
-var methods={};
+let methods={};
 
 methods.addReplaces = function (key,value) {
   this.replaces[key]=value;
 }
 methods.getRepacer = function (key) {
-  var replacer = (this.replaces[key] != undefined)?this.replaces[key]:key;
+  let replacer = (this.replaces[key] != undefined)?this.replaces[key]:key;
   return replacer;
 }
 methods.setDefaultOption = function (defaultOption) {
@@ -44,7 +44,7 @@ methods.isLegalVerbose = function (verbose) {
 }
 
 methods.validateOptionAndValue = function (option,value) {
-  var err = {};
+  let err = {};
    if(!this.isLegalOption(option)){
      err.name='option';
      err.reason='invalid option --'+option;
@@ -64,7 +64,7 @@ methods.setOptionAndValue=function (option,value) {
 }
 
 methods.isMaximumOptionsReached = function () {
-  var optionsSet = Object.keys(this.getParsedArguments().flags);
+  let optionsSet = Object.keys(this.getParsedArguments().flags);
   if(optionsSet.length>this.maximum)
     ErrorEmitter.emit('error',{name:'maximum options ',reason:'maximum options reached  '+ optionsSet});
 }
@@ -78,24 +78,24 @@ methods.parseArguments = function (option,remainingArray) {
 }
 
 methods.parseOptions = function (option,remainingArray) {
-  var separatedObj={};
+  let separatedObj={};
   if(parserLib.doesOptionContainValue(option)){
     separatedObj=parserLib.getNumberAndTextFromString(option);
-    var optionToSet = separatedObj.text && separatedObj.text.join('') || (this.getParsedArguments().optionSetBy='program'&& this.getParsedArguments().defaultOption);
+    let optionToSet = separatedObj.text && separatedObj.text.join('') || (this.getParsedArguments().optionSetBy='program'&& this.getParsedArguments().defaultOption);
     this.setOptionAndValue('-'+optionToSet,separatedObj.number);
 
   }else if (this.isLegalVerbose(option)) {
     this.setLegalVerbose(option);
 
   }else if (parserLib.doesItContainMultipleOptions(option)) {
-    var multiOptionArray = parserLib.getTextPartFromString(option);
+    let multiOptionArray = parserLib.getTextPartFromString(option);
 
     if(this.combinedFlags){
       multiOptionArray = multiOptionArray.map(function (ele) {
         return '-'+ele;
       });
-    for(var index=0;index<multiOptionArray.length;){
-     var element = multiOptionArray[index];
+    for(let index=0;index<multiOptionArray.length;){
+     let element = multiOptionArray[index];
      this.parseOptions(this.getRepacer(multiOptionArray.shift()),
      remainingArray);
      }
@@ -120,7 +120,7 @@ methods.setOptionalArguments = function (option,remainingArray) {
 }
 
 methods.parse = function (argumentsArray) {
-  var copyOfArguments = argumentsArray.slice();
+  let copyOfArguments = argumentsArray.slice();
   while (copyOfArguments.length>0) {
     this.parseArguments(this.getRepacer(copyOfArguments.shift())
     ,copyOfArguments);
