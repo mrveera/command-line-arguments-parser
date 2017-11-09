@@ -1,6 +1,6 @@
 {
   "name": "command-line-arguments-parser",
-  "version": "1.0.2",
+  "version": "4.0.0",
   "description": "this package help to parse command line arguments to specific structure you can customize it for any command",
   "main": "index.js",
   "directories": {
@@ -10,10 +10,10 @@
     "test": "node test/runAllTest.js"
   },
   "keywords": [
-    "command-line",
-    "arguments",
-    "parsing"
+    "command-line-arguments-parser",
+    "arguments-parser",
+    "parsing options"
   ],
   "author": "veera",
-  "license": "ISC"
+  "license": "MIT"
 }
