@@ -20,7 +20,7 @@ even if you are building your own command.
 ## Usage
 
 ```javascript
-let Parser=require('command-line-arguments-parser').Parser;
+let Parser=require('command-line-arguments-parser');
 
 let parserName=new Parser();
 
@@ -59,7 +59,7 @@ your arguments -n  10 -c 20
 
 ##### Head command Parser
 ```javascript
-  let Parser=require('command-line-arguments-parser').Parser;
+  let Parser=require('command-line-arguments-parser');
 
   let headParser = new Parser();
   //default option 'n'
