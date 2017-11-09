@@ -15,10 +15,10 @@ let Parser = function () {
 }
 let methods={};
 
-methods.addReplaces = function (key,value) {
+methods.addReplacer = function (key,value) {
   this.replaces[key]=value;
 }
-methods.getRepacer = function (key) {
+methods.getReplacer = function (key) {
   let replacer = (this.replaces[key] != undefined)?this.replaces[key]:key;
   return replacer;
 }
@@ -96,7 +96,7 @@ methods.parseOptions = function (option,remainingArray) {
       });
     for(let index=0;index<multiOptionArray.length;){
      let element = multiOptionArray[index];
-     this.parseOptions(this.getRepacer(multiOptionArray.shift()),
+     this.parseOptions(this.getReplacer(multiOptionArray.shift()),
      remainingArray);
      }
    }else{
@@ -122,7 +122,7 @@ methods.setOptionalArguments = function (option,remainingArray) {
 methods.parse = function (argumentsArray) {
   let copyOfArguments = argumentsArray.slice();
   while (copyOfArguments.length>0) {
-    this.parseArguments(this.getRepacer(copyOfArguments.shift())
+    this.parseArguments(this.getReplacer(copyOfArguments.shift())
     ,copyOfArguments);
   }
   return this.getParsedArguments();

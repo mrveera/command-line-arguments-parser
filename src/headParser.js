@@ -6,7 +6,7 @@ let headArguments = function () {
   headParser.setDefaultOption('n');
   headParser.addLegalOption('-n',isItNumber);
   headParser.addLegalOption('-c',isItNumber);
-  headParser.addReplaces('--','-n10');
+  headParser.addReplacer('--','-n10');
   headParser.addLegalVerbose('--help');
   headParser.enableCombinedFlags();
   headParser.setMaximumOptions(2);

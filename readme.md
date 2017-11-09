@@ -32,7 +32,7 @@ parserName.setDefaultOption(option);
 parserName.addLegalOption(option1 ,value1ValidatorCallback);
 
 //if your options doing same work you need to add replaces
-parserName.addReplaces(key ,value); //example  ('-h','--help')
+parserName.addReplacer(key ,value); //example  ('-h','--help')
 
 //if your option don't need value you need to add into verboses
 //it should start with double hyphen to make valid verbose
@@ -69,7 +69,7 @@ your arguments -n  10 -c 20
   headParser.addLegalOption('-c',isItNumber);
 
   // -- and -n10 functionality are same
-  headParser.addReplaces('--','-n10');
+  headParser.addReplacer('--','-n10');
 
   // --help which don't need any input
   headParser.addLegalVerbose('--help');
