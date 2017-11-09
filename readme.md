@@ -1,7 +1,7 @@
 
 # command-line-arguments-parser
 
-[[![CircleCI](https://circleci.com/bb/veera83372/command-line-argumnets-parser/tree/master.svg?style=shield&circle-token=a723bccdc76d4581bf70d5a59b590244067fa307)](https://circleci.com/bb/veera83372/command-line-argumnets-parser/tree/master)[![Join the chat at https://gitter.im/command-line-arguments-parser/Lobby](https://badges.gitter.im/command-line-arguments-parser/Lobby.svg)](https://gitter.im/command-line-arguments-parser/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)]
+[![CircleCI](https://circleci.com/bb/veera83372/command-line-argumnets-parser/tree/master.svg?style=shield&circle-token=a723bccdc76d4581bf70d5a59b590244067fa307)](https://circleci.com/bb/veera83372/command-line-argumnets-parser/tree/master)[![Join the chat at https://gitter.im/command-line-arguments-parser/Lobby](https://badges.gitter.im/command-line-arguments-parser/Lobby.svg)](https://gitter.im/command-line-arguments-parser/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is a command line arguments parser written in Javascript that helps parse command line arguments and it will return object with boolean flags ,value flags, arguments, optionSetBy and default option.
 You should define rules to parse.
