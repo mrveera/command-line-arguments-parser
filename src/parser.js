@@ -33,7 +33,6 @@ methods.addLegalOption = function(option, validationCallback) {
 methods.addLegalLongName = function(LongName) {
   this.legalLongNames.push(LongName.substring(2));
 };
-
 methods.isLegalOption = function(option) {
   return parserLib.isOption(option) && this.legalOptions.includes(option.substring(1));
 };
@@ -43,7 +42,7 @@ methods.isLegalLongName = function(LongName) {
   .includes(LongName.substring(2));
 };
 
-methods.validateOptionAndValue = function(emitter,option, value) {
+methods.validateOptionAndValue = function(emitter, option, value) {
   let err = {};
   if (!this.isLegalOption(option)) {
     err.name = 'option';
@@ -57,7 +56,7 @@ methods.validateOptionAndValue = function(emitter,option, value) {
   return true;
 };
 
-methods.validateLongName = function(emitter,LongName) {
+methods.validateLongName = function(emitter, LongName) {
   let err = {};
   if (!this.isLegalLongName(LongName)) {
     err.name = 'LongName';
@@ -67,7 +66,7 @@ methods.validateLongName = function(emitter,LongName) {
 };
 
 methods.setOptionAndValue = function(option, value) {
-  this.validateOptionAndValue(ErrorEmitter,option, value);
+  this.validateOptionAndValue(ErrorEmitter, option, value);
   this.getParsedArguments().flags[option.substring(1)] = value;
   this.isMaximumOptionsReached(ErrorEmitter);
 };
@@ -75,7 +74,8 @@ methods.setOptionAndValue = function(option, value) {
 methods.isMaximumOptionsReached = function(emitter) {
   let optionsSet = Object.keys(this.getParsedArguments().flags);
   if (optionsSet.length > this.maximum)
-    emitter.emit('error', {name: 'maximum options ',reason: 'maximum options reached  ' + optionsSet});
+    emitter.emit('error', {name: 'maximum options ',
+    reason: 'maximum options reached  ' + optionsSet});
 };
 methods.parseArguments = function(option, remainingArray) {
   if (parserLib.isOption(option)) {
@@ -120,7 +120,7 @@ methods.parseMultipleOptions = function(option, remainingArray) {
 };
 
 methods.setLegalLongName = function(LongName) {
-  this.validateLongName(ErrorEmitter,LongName);
+  this.validateLongName(ErrorEmitter, LongName);
   this.getParsedArguments().LongNames.push(LongName);
   return true;
 };
