@@ -82,7 +82,7 @@ assert.ok(!actual);
 
 //======== doesItContainMultipleOptions =======
 test['doesItContainMultipleOptions should return false if the given string not contaning more than one alphabet']=function () {
-let actual = parserLib.doesItContainMultipleOptions('34567c');
+let actual = parserLib.doesItContainMultipleOptions('34567');
 assert.ok(!actual);
 }
 

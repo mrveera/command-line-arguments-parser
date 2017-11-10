@@ -1,5 +1,6 @@
 const assert = require('assert');
 const Parser = require('../src/parser');
+const EventEmitter = require('events');
 const test={};
 exports.test=test;
 
@@ -260,6 +261,29 @@ test['parse seperates multi letter option , files from arguments given'] = funct
 
 
 
+test['parse seperates single numerival value as option from arguments given'] = function(){
+  let demoArgs3 = ['-12',"toDo.txt"];
+  let parser = new Parser();
+  let isItNumber = function (value) {
+    return (+value>0);
+  };
+  parser.setDefaultOption('n');
+  parser.addLegalOption('-n',isItNumber);
+  parser.setMaximumOptions(2);
+
+  parser.addLegalVerbose('--help');
+  let expected ={
+    arguments:['toDo.txt'],
+    verboses:[],
+    optionSetBy:'n',
+    flags:{n:'12'},
+    defaultOption:'n'
+  };
+  let actual = parser.parse(demoArgs3)
+  assert.deepEqual(actual,expected);
+};
+
+
 // ====== addReplacer =========
 test['addReplacer should set given value to given key'] = function () {
   let parser = new Parser();
@@ -274,6 +298,68 @@ test['getReplacer should return  value to given key'] = function () {
   assert.equal(parser.getReplacer('--'),'-n10');
 }
 
+//======== validateOptionAndValue =====
+test['validateOptionAndValue shoud emit the event error on given emitter when option is not valid'] = function () {
+  let contents='';
+  let parser = new Parser();
+  let dummyEmitter =new EventEmitter();
+  let onError = function () {
+    contents=true;
+  }
+  dummyEmitter.on('error',onError);
+  let isItNumber = function (value) {
+    return (+value>0);
+  };
+  parser.addLegalOption('-n',isItNumber);
+  parser.validateOptionAndValue(dummyEmitter,'-x','4');
+  assert.ok(contents);
+}
+
+
+test['validateOptionAndValue shoud emit the event error on given emitter when value is not valid'] = function () {
+  let contents='';
+  let parser = new Parser();
+  let dummyEmitter =new EventEmitter();
+  let onError = function () {
+    contents=true;
+  }
+  dummyEmitter.on('error',onError);
+  let isItNumber = function (value) {
+    return (+value>0);
+  };
+  parser.addLegalOption('-n',isItNumber);
+  parser.validateOptionAndValue(dummyEmitter,'-n','x');
+  assert.ok(contents);
+}
+
+//======== validateVerbose ====
+test['validateVerbose shoud emit the event error on given emitter when verbose is not valid'] = function () {
+  let contents='';
+  let parser = new Parser();
+  let dummyEmitter =new EventEmitter();
+  let onError = function () {
+    contents=true;
+  }
+  dummyEmitter.on('error',onError);
+
+  parser.addLegalVerbose('--help');
+  parser.validateVerbose(dummyEmitter,'--step');
+  assert.ok(contents);
+}
+
+//======== isMaximumOptionsReached ====
+test['isMaximumOptionsReached should emit error on given emitter when number options reached']=function () {
+  let contents='';
+  let parser = new Parser();
+  let dummyEmitter =new EventEmitter();
+  let onError = function () {
+    contents=true;
+  }
+  dummyEmitter.on('error',onError);
+  parser.setMaximumOptions(-1);
+  parser.isMaximumOptionsReached(dummyEmitter);
+  assert.ok(contents);
+}
 exports.runTests = function () {
   let testCases = Object.keys(test);
   for(let index=0;index<testCases.length;index++){
