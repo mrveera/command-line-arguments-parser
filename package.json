@@ -1,6 +1,6 @@
 {
   "name": "command-line-arguments-parser",
-  "version": "4.1.5",
+  "version": "4.1.6",
   "description": "This package help to parse command line arguments to specific structure you can customize it for any command , command line arguments to options ,boolean flags ,remaining unspecified arguments",
   "main": "index.js",
   "directories": {
@@ -8,14 +8,17 @@
   },
   "scripts": {
     "test": "node test/runAllTest.js",
-    "start":"node index.js",
-    "build":"node test/runAllTest.js"
+    "start": "node index.js",
+    "coverage": "istanbul  cover test/runAllTest.js",
+    "build": "node test/runAllTest.js"
   },
   "repository": {
-    "type":"git",
-    "url":"https://github.com/veera83372/command-line-arguments-parser.git"
+    "type": "git",
+    "url": "https://github.com/veera83372/command-line-arguments-parser.git"
   },
-  "bugs":{"url":"https://github.com/veera83372/command-line-arguments-parser/issues"},
+  "bugs": {
+    "url": "https://github.com/veera83372/command-line-arguments-parser/issues"
+  },
   "homepage": "https://veera83372.github.io/command-line-arguments-parser",
   "keywords": [
     "command-line-arguments-parser",
@@ -24,5 +27,4 @@
   ],
   "author": "veera",
   "license": "Apache-2.0"
-
 }
