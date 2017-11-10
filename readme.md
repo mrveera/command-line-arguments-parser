@@ -34,9 +34,9 @@ parserName.addLegalOption(option1 ,value1ValidatorCallback);
 //if your options doing same work you need to add replaces
 parserName.addReplacer(key ,value); //example  ('-h','--help')
 
-//if your option don't need value you need to add into verboses
-//it should start with double hyphen to make valid verbose
-parserName.addLegalVerbose('--'+yourVerboseName);
+//if your option don't need value you need to add into LongNames
+//it should start with double hyphen to make valid LongName
+parserName.addLegalLongName('--'+yourLongNameName);
 
 
 //to enable combined flags
@@ -72,7 +72,7 @@ your arguments -n  10 -c 20
   headParser.addReplacer('--','-n10');
 
   // --help which don't need any input
-  headParser.addLegalVerbose('--help');
+  headParser.addLegalLongName('--help');
 
   //by default combined flags are false
   headParser.enableCombinedFlags();
@@ -91,7 +91,7 @@ your arguments -n  10 -c 20
   let args=['--help'];
   //output
   { arguments: [],
-  verboses: [ '--help' ],
+  LongNames: [ '--help' ],
   optionSetBy: 'default',
   flags: {},
   defaultOption: 'n' }
@@ -104,7 +104,7 @@ your arguments -n  10 -c 20
   //output
   {
     arguments:['toDo.txt'],
-    verboses:[],
+    LongNames:[],
     optionSetBy:'default',
     flags:{n:10},
     defaultOption:'n'
@@ -114,7 +114,7 @@ your arguments -n  10 -c 20
   //output
   {
     arguments:['toDo.txt','--help'],
-    verboses:[],
+    LongNames:[],
     optionSetBy:'default',
     flags:{n:12},
     defaultOption:'n'
@@ -124,7 +124,7 @@ your arguments -n  10 -c 20
   //output
   {
     arguments:[],
-    verboses:[],
+    LongNames:[],
     optionSetBy:'default',
     flags:{},
     defaultOption:'n'
@@ -134,7 +134,7 @@ your arguments -n  10 -c 20
   //output
   {
     arguments:[],
-    verboses:[],
+    LongNames:[],
     optionSetBy:'n',
     flags:{n:10},
     defaultOption:'n'
@@ -149,7 +149,7 @@ args=['-n10','-20'];
 //it will replace n value with 20 because default option is n
 {
   arguments:[],
-  verboses:[],
+  LongNames:[],
   optionSetBy:'n',
   flags:{n:20},
   defaultOption:'n'

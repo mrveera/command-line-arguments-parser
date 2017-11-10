@@ -2,7 +2,7 @@ let isOption = function (option) {
   return option.substring(0,1)=='-';
 }
 
-let isVerbose = function (option) {
+let isLongName = function (option) {
   return option.substring(0,2)=='--';
 }
 
@@ -41,4 +41,4 @@ exports.getNumberPartFromString=getNumberPartFromString;
 exports.doesItContainMultipleOptions=doesItContainMultipleOptions;
 exports.doesOptionContainValue = doesOptionContainValue;
 exports.isOption=isOption;
-exports.isVerbose=isVerbose;
+exports.isLongName=isLongName;

@@ -7,7 +7,7 @@ let headArguments = function () {
   headParser.addLegalOption('-n',isItNumber);
   headParser.addLegalOption('-c',isItNumber);
   headParser.addReplacer('--','-n10');
-  headParser.addLegalVerbose('--help');
+  headParser.addLegalLongName('--help');
   headParser.enableCombinedFlags();
   headParser.setMaximumOptions(1);
   console.log(headParser.parse(args));

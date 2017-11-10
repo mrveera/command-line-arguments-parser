@@ -2,11 +2,11 @@ const ErrorEmitter = require('./errorHandler');
 const parserLib = require('./parserLib');
 let Parser = function() {
   this.legalOptions = [];
-  this.legalVerboses = [];
+  this.legalLongNames = [];
   this.replaces = {};
   this.parsedArguments = {
     arguments: [],
-    verboses: [],
+    LongNames: [],
     optionSetBy: 'default',
     flags: {},
   };
@@ -30,17 +30,17 @@ methods.addLegalOption = function(option, validationCallback) {
   this.legalOptions.push(option.substring(1));
   this[option.substring(1)] = validationCallback;
 };
-methods.addLegalVerbose = function(verbose) {
-  this.legalVerboses.push(verbose.substring(2));
+methods.addLegalLongName = function(LongName) {
+  this.legalLongNames.push(LongName.substring(2));
 };
 
 methods.isLegalOption = function(option) {
   return parserLib.isOption(option) && this.legalOptions.includes(option.substring(1));
 };
 
-methods.isLegalVerbose = function(verbose) {
-  return parserLib.isVerbose(verbose) && this.legalVerboses
-  .includes(verbose.substring(2));
+methods.isLegalLongName = function(LongName) {
+  return parserLib.isLongName(LongName) && this.legalLongNames
+  .includes(LongName.substring(2));
 };
 
 methods.validateOptionAndValue = function(emitter,option, value) {
@@ -57,11 +57,11 @@ methods.validateOptionAndValue = function(emitter,option, value) {
   return true;
 };
 
-methods.validateVerbose = function(emitter,verbose) {
+methods.validateLongName = function(emitter,LongName) {
   let err = {};
-  if (!this.isLegalVerbose(verbose)) {
-    err.name = 'verbose';
-    err.reason = 'illegal verbose --' + verbose;
+  if (!this.isLegalLongName(LongName)) {
+    err.name = 'LongName';
+    err.reason = 'illegal LongName --' + LongName;
     emitter.emit('error', err);
   }
 };
@@ -93,8 +93,8 @@ methods.parseOptions = function(option, remainingArray) {
     let optionToSet = separatedObj.text && separatedObj.text.join('') || (this.getParsedArguments().optionSetBy = this.getParsedArguments().defaultOption);
 
     this.setOptionAndValue('-' + optionToSet, separatedObj.number);
-  }else if (parserLib.isVerbose(option)) {
-    this.setLegalVerbose(option);
+  }else if (parserLib.isLongName(option)) {
+    this.setLegalLongName(option);
   }else if (parserLib.doesItContainMultipleOptions(option)) {
     this.parseMultipleOptions(option, remainingArray);
   }else {
@@ -119,9 +119,9 @@ methods.parseMultipleOptions = function(option, remainingArray) {
   }
 };
 
-methods.setLegalVerbose = function(verbose) {
-  this.validateVerbose(ErrorEmitter,verbose);
-  this.getParsedArguments().verboses.push(verbose);
+methods.setLegalLongName = function(LongName) {
+  this.validateLongName(ErrorEmitter,LongName);
+  this.getParsedArguments().LongNames.push(LongName);
   return true;
 };
 
