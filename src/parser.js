@@ -91,30 +91,33 @@ methods.parseOptions = function (option,remainingArray) {
   if(parserLib.doesOptionContainValue(option)){
     separatedObj=parserLib.getNumberAndTextFromString(option);
     let optionToSet = separatedObj.text && separatedObj.text.join('') || (this.getParsedArguments().optionSetBy='program'&& this.getParsedArguments().defaultOption);
+    
     this.setOptionAndValue('-'+optionToSet,separatedObj.number);
 
   }else if (parserLib.isVerbose(option)) {
     this.setLegalVerbose(option);
-
   }else if (parserLib.doesItContainMultipleOptions(option)) {
-    let multiOptionArray = parserLib.getTextPartFromString(option);
-
-    if(this.combinedFlags){
-      multiOptionArray = multiOptionArray.map(function (ele) {
-        return '-'+ele;
-      });
-    for(let index=0;index<multiOptionArray.length;){
-     let element = multiOptionArray[index];
-     this.parseOptions(this.getReplacer(multiOptionArray.shift()),
-     remainingArray);
-     }
-   }else{
-     this.setOptionAndValue('-'+multiOptionArray.join(''),remainingArray.shift());
-   }
+    this.parseMultipleOptions(option,remainingArray);
   }else{
     if(option == '-'+this.getParsedArguments().defaultOption) this.getParsedArguments().optionSetBy='default';
     this.setOptionAndValue(option,remainingArray.shift());
   }
+}
+
+methods.parseMultipleOptions = function (option,remainingArray) {
+  let multiOptionArray = parserLib.getTextPartFromString(option);
+  if(this.combinedFlags){
+    multiOptionArray = multiOptionArray.map(function (ele) {
+      return '-'+ele;
+    });
+  for(let index=0;index<multiOptionArray.length;){
+   let element = multiOptionArray[index];
+   this.parseOptions(this.getReplacer(multiOptionArray.shift()),
+   remainingArray);
+   }
+ }else{
+   this.setOptionAndValue('-'+multiOptionArray.join(''),remainingArray.shift());
+}
 }
 
 methods.setLegalVerbose = function (verbose) {
